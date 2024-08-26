@@ -1,0 +1,31 @@
+version: '3'
+
+tasks:
+  build-bot:
+    desc: "Build the bot executable"
+    cmds:
+      - "go build -o ./.bin/bot ./cmd/bot/main.go"
+    sources:
+      - "cmd/bot/main.go"
+    generates:
+      - ".bin/bot"
+
+  run:
+    desc: "Build and run the bot"
+    deps:
+      - build-bot
+    cmds:
+      - "go run ./cmd/bot/main.go"
+
+  build-image:
+    desc: "Build Docker image"
+    cmds:
+      - "docker build -t telegram-bot:v0.2 ."
+
+  start-container:
+    desc: "Start the Docker container if it exists, otherwise create it"
+    deps:
+      - build-image
+    cmds:
+      - "docker run --name telegram-bot -p 80:80 --env-file .env -d telegram-bot:v0.2"
+

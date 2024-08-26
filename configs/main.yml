@@ -1,0 +1,15 @@
+db_file: "bot.db"
+
+bot_uri: "https://t.me/printlnd_bot"
+
+messages:
+  responses:
+    start: "Hi, to save a link to POCKET, you must first give me permission to do so. Click on the link below to give permission.\n%s"
+    already_authorized: "You are already authorized. Send me a link and I will add it to your pocket."
+    saved_successfully: "Your link has been added to your pocket."
+    unknown_command: "Unknown command"
+  errors:
+    default: "Unexpected error"
+    invalid_uri: "Invalid link"
+    unauthorized: "You aren't authorized. Use command '/start' to authorize."
+    unable_to_save: "I can't add this link to your pocket. Try again later."
